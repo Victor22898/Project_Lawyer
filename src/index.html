@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Юридическая Компания - Ваш надежный партнер</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-container">
+        <div class="logo">LawFirm</div>
+        <nav class="nav">
+            <a href="#about">О компании</a>
+
+            <div class="services-wrapper">
+                <button id="servicesToggle" class="nav-btn" aria-haspopup="true" aria-expanded="false">
+                    Услуги
+                    <span class="arrow">&#9656;</span>
+                </button>
+                <div id="servicesPopup" class="services-popup hidden" role="menu" aria-label="Перечень услуг">
+                    <ul class="services-list-popup">
+                        <li role="menuitem" tabindex="0"><a href="/services/consultation" class="service-link">Юридические консультации</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/documents" class="service-link">Подготовка и оформление документов</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/court" class="service-link">Представительство в суде</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/contracts" class="service-link">Сопровождение сделок и контрактов</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/family" class="service-link">Семейное право и наследство</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button id="contactOpen" class="nav-btn">Контакты</button>
+            <a href="#team">Команда</a>
+        </nav>
+
+    </div>
+</header>
+
+<section id="hero" class="hero">
+    <div class="container hero-container">
+        <h1>Надежная юридическая помощь для вашего бизнеса и семьи</h1>
+        <p>Профессиональные юристы с многолетним опытом решат ваши правовые вопросы.</p>
+        <button id="contactOpenBtn" class="btn">Связаться с нами</button>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <div class="container">
+        <h2>О компании</h2>
+        <p>Наша юридическая компания специализируется на гражданском праве, сопровождении бизнеса и семейных делах. Мы ценим доверие клиентов и гарантируем индивидуальный подход.</p>
+    </div>
+</section>
+
+<!-- Убираем отдельный блок услуг, т.к. теперь всплывающее меню -->
+
+<section id="team" class="section">
+    <div class="container">
+        <h2>Наша команда</h2>
+        <div class="team-members">
+            <div class="member">
+                <img src="photo1.jpg" alt="Елена Смирнова" />
+                <h3>Елена Смирнова</h3>
+                <p>Главный юрист</p>
+            </div>
+            <div class="member">
+                <img src="photo2.jpg" alt="Алексей Петров" />
+                <h3>Алексей Петров</h3>
+                <p>Адвокат</p>
+            </div>
+            <div class="member">
+                <img src="photo3.jpg" alt="Марина Кузнецова" />
+                <h3>Марина Кузнецова</h3>
+                <p>Юрист по семейным делам</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно контактов -->
+<div id="contactModal" class="modal hidden">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <button class="close" id="contactClose" aria-label="Закрыть окно">&times;</button>
+        <h2 id="contactTitle">Контакты</h2>
+        <p><strong>Адрес:</strong> г. Москва, ул. Примерная, д.1</p>
+        <p><strong>Телефон:</strong> +7 (123) 456-78-90</p>
+        <p><strong>Email:</strong> info@lawcorp.ru</p>
+        <form id="contactForm" class="contact-form" novalidate>
+            <input type="text" id="name" name="name" placeholder="Ваше имя" required autocomplete="name" />
+            <input type="email" id="email" name="email" placeholder="Ваш email" required autocomplete="email" />
+            <select id="service" name="service" required>
+                <option value="" disabled selected>Выберите услугу</option>
+                <option value="Консультация">Консультация</option>
+                <option value="Подготовка документов">Подготовка документов</option>
+                <option value="Судебное представительство">Судебное представительство</option>
+                <option value="Другие услуги">Другие услуги</option>
+            </select>
+            <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Юридическая Компания "LawFirm" | Москва, ул. Примерная, д. 1</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
