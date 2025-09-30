@@ -23,9 +23,9 @@
                     <ul class="services-list-popup">
                         <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/consultation.html?_ijt=qis0136eqiepm9df6b54f5lmt2&_ij_reload=RELOAD_ON_SAVE" class="service-link">Юридические консультации</a></li>
                         <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/documents.html?_ijt=8091cttg7nj4t1fq6opv73tv5l&_ij_reload=RELOAD_ON_SAVE" class="service-link">Подготовка и оформление документов</a></li>
-                        <li role="menuitem" tabindex="0"><a href="/services/court" class="service-link">Представительство в суде</a></li>
-                        <li role="menuitem" tabindex="0"><a href="/services/contracts" class="service-link">Сопровождение сделок и контрактов</a></li>
-                        <li role="menuitem" tabindex="0"><a href="/services/family" class="service-link">Семейное право и наследство</a></li>
+                        <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/court.html?_ijt=9rrk08h2hll3b7sjmfctasei4d&_ij_reload=RELOAD_ON_SAVE" class="service-link">Представительство в суде</a></li>
+                        <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/deal.html?_ijt=gtnn54ivptpdhite6vrd84oqbd&_ij_reload=RELOAD_ON_SAVE" class="service-link">Сопровождение сделок и контрактов</a></li>
+                        <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/family.html?_ijt=9rrk08h2hll3b7sjmfctasei4d&_ij_reload=RELOAD_ON_SAVE" class="service-link">Семейное право и наследство</a></li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +108,7 @@
         <form id="contactForm" class="contact-form" novalidate>
             <input type="text" id="name" name="name" placeholder="Ваше имя" required autocomplete="name" />
             <input type="email" id="email" name="email" placeholder="Ваш email" required autocomplete="email" />
-            <input type="phone" id="phone" name="phone" placeholder="Ваш телефон" required autocomplete="" />
+            <input type="phone" id="phone" name="phone" placeholder="Ваш телефон" required autocomplete="phone" />
             <select id="service" name="service" required>
                 <option value="" disabled selected>Выберите услугу</option>
                 <option value="Консультация">Консультация</option>
@@ -119,6 +119,23 @@
             <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
             <button type="submit" class="btn">Отправить</button>
         </form>
+        <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+        <script>
+            (function(){
+              emailjs.init("TMkoATsMBWMNLzaEh");
+            })();
+
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+              e.preventDefault();
+
+              emailjs.sendForm("service_3n6tbgz", "template_dtew1d9", this)
+                .then(() => {
+                  alert("Сообщение отправлено!");
+                }, (err) => {
+                  alert("Ошибка: " + JSON.stringify(err));
+                });
+            });
+        </script>
     </div>
 </div>
 

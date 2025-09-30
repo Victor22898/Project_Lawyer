@@ -9,7 +9,7 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-
+<li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/index.html?_ijt=ucqkmulva52r95n35bkvvvnacu&_ij_reload=RELOAD_ON_SAVE" aria-label="На главную" title="На главную" style="margin-right:8px;text-decoration:none"><h4>Главная</h4></a><a></a>
 <header>
   <h1>Семейные дела</h1>
 </header>
@@ -26,37 +26,57 @@
 
   <!-- Другие услуги -->
 
+
   <section id="other-services" class="section">
     <div class="container">
       <h2><span class="blue">ДРУГИЕ</span> <span class="red">УСЛУГИ</span></h2>
-      <div class="services-slider">
-        <button class="slider-btn prev">&#8249;</button>
-        <div class="services-track">
-          <a href="consultation.html" class="service-card" style="background-image: url('service1.jpg');">
-            <h3>Консультация</h3>
-            <p>Профессиональная помощь по любым юридическим вопросам.</p>
-            <span class="apply-btn">ПОДРОБНЕЕ</span>
-          </a>
-          <a href="documents.html" class="service-card" style="background-image: url('service2.jpg');">
-            <h3>Документы</h3>
-            <p>Подготовка и проверка юридически важных документов.</p>
-            <span class="apply-btn">ПОДРОБНЕЕ</span>
-          </a>
-          <a href="court.html" class="service-card" style="background-image: url('service3.jpg');">
-            <h3>Судебная защита</h3>
-            <p>Полное представительство в судах всех уровней.</p>
-            <span class="apply-btn">ПОДРОБНЕЕ</span>
-          </a>
-        </div>
-        <button class="slider-btn next">&#8250;</button>
+
+      ```
+      <div class="other-services-row">
+        <a href="consultation.html" class="other-service">
+          <div class="other-service-img" style="background-image: url('service1.jpg');"></div>
+          <h3>Консультация</h3>
+        </a>
+
+        <a href="documents.html" class="other-service">
+          <div class="other-service-img" style="background-image: url('service2.jpg');"></div>
+          <h3>Документы</h3>
+        </a>
+
+        <a href="court.html" class="other-service">
+          <div class="other-service-img" style="background-image: url('service3.jpg');"></div>
+          <h3>Судебная защита</h3>
+        </a>
+
+        <a href="family.html" class="other-service">
+          <div class="other-service-img" style="background-image: url('service4.jpg');"></div>
+          <h3>Семейные дела</h3>
+        </a>
       </div>
+      ```
+
     </div>
   </section>
+      ```
+  </section>
 </main>
+  <div class="socials">
+    <p><strong>Ищите нас здесь:</strong></p>
+    <a href="https://t.me/yourchannel"><img src="https://img.icons8.com/?size=100&id=hMdroXN9qFHy&format=png&color=000000" alt="Telegram" width="24" height="24" /></a>
+    <a href="https://vk.com/yourpage"><img src="https://img.icons8.com/?size=100&id=60454&format=png&color=000000" alt="VK" width="24" height="24" /></a>
+  </div>
 
-<footer>
-  <p>© 2025 Юридическая Компания "LawFirm"</p>
-</footer>
+  <div class="map-block">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample&source=constructor" width="100%" height="300" frameborder="0"></iframe>
+    <button class="btn" onclick="window.open('https://yandex.ru/maps/?ll=37.617635%2C55.755814&z=14')">Карта офиса</button>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Юридическая Компания "LawFirm" | Москва, ул. Примерная, д. 1</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
