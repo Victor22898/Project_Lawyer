@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Юридическая Компания - Ваш надежный партнер</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-container">
+        <div class="logo">LawFirm</div>
+        <nav class="nav">
+            <a href="#about">О компании</a>
+
+            <div class="services-wrapper">
+                <button id="servicesToggle" class="nav-btn" aria-haspopup="true" aria-expanded="false">
+                    Услуги
+                    <span class="arrow">&#9656;</span>
+                </button>
+                <div id="servicesPopup" class="services-popup hidden" role="menu" aria-label="Перечень услуг">
+                    <ul class="services-list-popup">
+                        <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/consultation.html?_ijt=qis0136eqiepm9df6b54f5lmt2&_ij_reload=RELOAD_ON_SAVE" class="service-link">Юридические консультации</a></li>
+                        <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/documents.html?_ijt=8091cttg7nj4t1fq6opv73tv5l&_ij_reload=RELOAD_ON_SAVE" class="service-link">Подготовка и оформление документов</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/court" class="service-link">Представительство в суде</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/contracts" class="service-link">Сопровождение сделок и контрактов</a></li>
+                        <li role="menuitem" tabindex="0"><a href="/services/family" class="service-link">Семейное право и наследство</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button id="contactOpen" class="nav-btn">Контакты</button>
+            <a href="#team">Команда</a>
+        </nav>
+
+    </div>
+</header>
+
+
+
+<section id="hero" class="hero">
+    <div class="container hero-container">
+        <h1>Надежная юридическая помощь для вашего бизнеса и семьи</h1>
+        <p>Профессиональные юристы с многолетним опытом решат ваши правовые вопросы.</p>
+        <button id="contactOpenBtn" class="btn">Связаться с нами</button>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <div class="container">
+        <h2>О компании</h2>
+        <p>Наша юридическая компания специализируется на гражданском праве, сопровождении бизнеса и семейных делах. Мы ценим доверие клиентов и гарантируем индивидуальный подход.</p>
+    </div>
+</section>
+
+<!-- Убираем отдельный блок услуг, т.к. теперь всплывающее меню -->
+
+<section id="team" class="section">
+    <div class="container">
+        <h2>Наша команда</h2>
+        <div class="team-members">
+
+            <div class="member" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="memberModal" data-member="elena">
+                <img src="photo1.jpg" alt="Елена Смирнова" />
+                <h3>Елена Смирнова</h3>
+                <p>Главный юрист</p>
+            </div>
+
+            <div class="member" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="memberModal" data-member="aleksey">
+                <img src="photo2.jpg" alt="Алексей Петров" />
+                <h3>Алексей Петров</h3>
+                <p>Адвокат</p>
+            </div>
+
+            <div class="member" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="memberModal" data-member="marina">
+                <img src="https://kapachinskaya.ru/images/35hnz0.jpg" alt="Марина Кузнецова" />
+                <h3>Марина Кузнецова</h3>
+                <p>Юрист по семейным делам</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно с информацией о сотруднике -->
+<div id="memberModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="memberName" aria-describedby="memberDesc">
+    <div class="modal-content">
+        <button class="close" id="memberClose" aria-label="Закрыть окно">&times;</button>
+        <div class="member-info">
+            <img id="memberPhoto" src="" alt="" style="max-width:150px; border-radius: 50%;" />
+            <h2 id="memberName"></h2>
+            <h4 id="memberPosition"></h4>
+            <p id="memberDesc"></p>
+            <!-- Здесь можно добавить другие данные: контакты, достижения и т.п. -->
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно контактов -->
+<div id="contactModal" class="modal hidden">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <button class="close" id="contactClose" aria-label="Закрыть окно">&times;</button>
+        <h2 id="contactTitle">Контакты</h2>
+        <p><strong>Адрес:</strong> г. Москва, ул. Примерная, д.1</p>
+        <p><strong>Телефон:</strong> +7 (123) 456-78-90</p>
+        <p><strong>Email:</strong> info@lawcorp.ru</p>
+        <form id="contactForm" class="contact-form" novalidate>
+            <input type="text" id="name" name="name" placeholder="Ваше имя" required autocomplete="name" />
+            <input type="email" id="email" name="email" placeholder="Ваш email" required autocomplete="email" />
+            <input type="phone" id="phone" name="phone" placeholder="Ваш телефон" required autocomplete="" />
+            <select id="service" name="service" required>
+                <option value="" disabled selected>Выберите услугу</option>
+                <option value="Консультация">Консультация</option>
+                <option value="Подготовка документов">Подготовка документов</option>
+                <option value="Судебное представительство">Судебное представительство</option>
+                <option value="Другие услуги">Другие услуги</option>
+            </select>
+            <textarea id="message" name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="socials">
+    <p><strong>Ищите нас здесь:</strong></p>
+    <a href="https://t.me/yourchannel"><img src="https://img.icons8.com/?size=100&id=hMdroXN9qFHy&format=png&color=000000" alt="Telegram" width="24" height="24" /></a>
+    <a href="https://vk.com/yourpage"><img src="https://img.icons8.com/?size=100&id=60454&format=png&color=000000" alt="VK" width="24" height="24" /></a>
+</div>
+
+<div class="map-block">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample&source=constructor" width="100%" height="300" frameborder="0"></iframe>
+    <button class="btn" onclick="window.open('https://yandex.ru/maps/?ll=37.617635%2C55.755814&z=14')">Карта офиса</button>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Юридическая Компания "LawFirm" | Москва, ул. Примерная, д. 1</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
