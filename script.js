@@ -87,13 +87,13 @@ const teamMembers = {
   elena: {
     name: "Елена Смирнова",
     position: "Главный юрист",
-    photo: "photo1.jpg",
+    photo: "https://p0.zoon.ru/0/4/57c945d34bf7df1c5a8b456e_5febec2037960.jpg",
     desc: "Опыт более 15 лет в сфере гражданского права. Специализируется на сопровождении крупных сделок и судебной практике."
   },
   aleksey: {
     name: "Алексей Петров",
     position: "Адвокат",
-    photo: "photo2.jpg",
+    photo: "https://bipulse.ru/edu/assets/img/team/team-apetrov.jpg",
     desc: "Эксперт по уголовному и административному праву. Более 200 выигранных дел."
   },
   marina: {
