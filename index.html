@@ -8,17 +8,34 @@
 </head>
 <body>
 
+<style>
+    footer {
+    background: #0a192f;
+
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+    font-size: 14px;
+  }
+
+footer,
+footer * {
+  color: white !important;
+}
+
+</style>
 <header class="header">
     <div class="container header-container">
         <div class="logo">LawFirm</div>
         <nav class="nav">
-            <a href="#about">О компании</a>
+            <a href="#about" class="about">О компании</a>
 
             <div class="services-wrapper">
                 <button id="servicesToggle" class="nav-btn" aria-haspopup="true" aria-expanded="false">
                     Услуги
                     <span class="arrow">&#9656;</span>
                 </button>
+
                 <div id="servicesPopup" class="services-popup hidden" role="menu" aria-label="Перечень услуг">
                     <ul class="services-list-popup">
                         <li role="menuitem" tabindex="0"><a href="http://localhost:63342/Buissnes%20Web/consultation.html?_ijt=qis0136eqiepm9df6b54f5lmt2&_ij_reload=RELOAD_ON_SAVE" class="service-link">Юридические консультации</a></li>
@@ -30,12 +47,22 @@
                 </div>
             </div>
 
-            <button id="contactOpen" class="nav-btn">Контакты</button>
-            <a href="#team">Команда</a>
-        </nav>
+
+
+
+                <button id="contactOpen" class="nav-btn">Контакты</button>
+                <a href="#team" class="nav-btn">Команда</a>
+                <a href="gallery.html" class="nav-btn">Галерея</a>
+            </nav>
+
+
 
     </div>
+
+
 </header>
+
+
 
 
 
@@ -54,7 +81,7 @@
     </div>
 </section>
 
-<!-- Убираем отдельный блок услуг, т.к. теперь всплывающее меню -->
+
 
 <section id="team" class="section">
     <div class="container">
@@ -149,7 +176,7 @@
 
 <div class="map-block">
     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample&source=constructor" width="100%" height="300" frameborder="0"></iframe>
-    <button class="btn" onclick="window.open('https://yandex.ru/maps/?ll=37.617635%2C55.755814&z=14')">Карта офиса</button>
+
 </div>
 <footer class="footer">
     <div class="container">

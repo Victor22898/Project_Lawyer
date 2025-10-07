@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Квадратные карточки сотрудников</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0a192f;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-block;
+      margin-top: 0;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #ff6b6b, #e63946);
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 3px 12px rgba(230, 57, 70, 0.4);
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #e63946, #d62828);
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.5);
+      transform: translateY(calc(-50% - 2px));
+    }
+
+    main {
+      flex: 1 0 auto;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 30px;
+      min-height: 720px;
+    }
+
+/* Контейнер галереи */
+gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* делаем элементы сетки квадратными */
+.gallery-container > * {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* для картинок внутри — покрытие квадрата */
+.gallery-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Карточка сотрудника */
+.employee-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Эффект при наведении */
+.employee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Фото */
+.employee-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* фото всегда квадратное */
+  object-fit: cover;
+}
+
+/* Информация под фото */
+.employee-info {
+  padding: 10px 12px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.employee-info h3 {
+  margin: 0 0 6px;
+  color: #0a192f;
+  font-size: 16px;
+}
+
+.employee-info p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+    footer {
+      background: #0a192f;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right:0;
+      bottom:0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-content {
+      padding: 20px;
+    }
+
+    .modal-content h2 {
+      margin: 0 0 10px;
+      color: #0a192f;
+    }
+
+    .modal-content p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 0 0 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: #e63946;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <a href="index.html" class="back-btn" aria-label="На главную" title="На главную">← На главную</a>
+  <h1>Наша компания</h1>
+</header>
+
+<main class="gallery-container">
+  <!-- Пример карточек: для добавления доп. сотрудников просто добавляйте такие же div.employee-card -->
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Иван Иванов" data-position="Разработчик" data-description="Опытный разработчик, специалист по JavaScript и фронтенду." data-img="https://ltdfoto.ru/images/2025/10/07/photo_2025-10-07_10-57-07.jpg">
+    <img src="https://ltdfoto.ru/images/2025/10/07/photo_2025-10-07_10-57-07.jpg" alt="Иван Иванов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Иван Иванов</h3>
+      <p>Разработчик</p>
+    </div>
+  </div>
+
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Мария Петрова" data-position="Дизайнер" data-description="Креативный дизайнер с опытом работы в UI/UX и графическом дизайне." data-img="https://picsum.photos/id/1012/600/600">
+    <img src="https://picsum.photos/id/1012/400/400" alt="Мария Петрова" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Мария Петрова</h3>
+      <p>Дизайнер</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <div class="employee-card" tabindex="0" role="button" aria-pressed="false" data-name="Алексей Смирнов" data-position="Менеджер проекта" data-description="Опытный менеджер проектов, координирующий команды и сроки." data-img="https://picsum.photos/id/1013/600/600">
+    <img src="https://picsum.photos/id/1013/400/400" alt="Алексей Смирнов" width="400" height="400" loading="lazy" />
+    <div class="employee-info">
+      <h3>Алексей Смирнов</h3>
+      <p>Менеджер проекта</p>
+    </div>
+  </div>
+  <!-- Можно просто добавлять новые .employee-card с такими же атрибутами -->
+</main>
+
+<footer>
+  © 2025 Ваша компания. Все права защищены.
+</footer>
+
+<!-- Модальное окно -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" tabindex="-1">
+    <span class="modal-close" aria-label="Закрыть">&times;</span>
+    <img src="" alt="" id="modal-img" />
+    <div class="modal-content">
+      <h2 id="modal-title"></h2>
+      <h4 id="modal-position" style="color:#0a192f; margin:0 0 10px;"></h4>
+      <p id="modal-description"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitle = document.getElementById('modal-title');
+  const modalPosition = document.getElementById('modal-position');
+  const modalDescription = document.getElementById('modal-description');
+  const modalClose = modal.querySelector('.modal-close');
+  const modalDialog = modal.querySelector('.modal');
+
+  function openModal(card) {
+    modalImg.src = card.dataset.img;
+    modalImg.alt = card.dataset.name;
+    modalTitle.textContent = card.dataset.name;
+    modalPosition.textContent = card.dataset.position;
+    modalDescription.textContent = card.dataset.description;
+
+    modal.classList.add('active');
+    modalDialog.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modalImg.src = '';
+    modalTitle.textContent = '';
+    modalPosition.textContent = '';
+    modalDescription.textContent = '';
+  }
+
+  document.querySelectorAll('.employee-card').forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card);
+      }
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) {
+      closeModal();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>
