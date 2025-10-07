@@ -104,6 +104,10 @@ const teamMembers = {
   }
 };
 
+
+
+
+
 // Элементы модалки сотрудника
 const memberModal = document.getElementById('memberModal');
 const memberPhoto = document.getElementById('memberPhoto');
