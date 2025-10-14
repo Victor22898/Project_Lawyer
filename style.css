@@ -662,3 +662,19 @@ nav a {
 }
 
 
+.logo img {
+  height: 60px;           /* высота логотипа */
+  width: auto;            /* пропорции сохраняются */
+  object-fit: contain;    /* корректное масштабирование */
+  vertical-align: middle;
+   filter: brightness(0.40) contrast(1.2);
+     mix-blend-mode: darken;
+   }/* выравнивание по центру */
+
+}
+
+header .logo {
+  display: inline-block;
+  vertical-align: middle;
+
+}
